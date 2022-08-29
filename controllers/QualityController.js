@@ -32,7 +32,7 @@ class QualityController {
 	}
 
 	async data(req, res) {
-		if (!req.query.server)
+		if (!req.query["server"])
 			res.json({ Status: "Error", Message: "Podaj serwer" });
 
 		const now = new Date().toLocaleString("se-SE", {
@@ -43,11 +43,11 @@ class QualityController {
 
 		const check_server = await Server.query()
 			.select("*")
-			.where("name", req.query.server);
+			.where("name", req.query["server"]);
 
 		if (check_server.length == 0) {
 			const newServer = await Server.query().insert({
-				name: req.query.server,
+				name: req.query["server"],
 				request: requestString,
 				req_date: now,
 			});
