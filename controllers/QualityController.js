@@ -5,8 +5,7 @@ const Quality = require("../models/Quality");
 
 class QualityController {
 	async index(req, res) {
-		res.send(process.env.PORT);
-		// res.render("index");
+		res.render("index");
 	}
 
 	async show(req, res) {
