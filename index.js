@@ -4,6 +4,7 @@ const app = express();
 const router = require("./routes/route");
 const bodyParser = require("body-parser");
 const path = require("path");
+const cron = require("./cron");
 
 process.env.TZ = "Europe/Amsterdam";
 
@@ -19,3 +20,5 @@ app.use("/", router);
 app.listen(process.env.PORT, function () {
 	console.log("slucha" + process.env.PORT);
 });
+
+cron;

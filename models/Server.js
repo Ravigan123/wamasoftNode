@@ -1,13 +1,14 @@
 const { Model } = require("objection");
 const knex = require("../config/database");
 const Title = require("./Title");
+const Alert = require("./Alert");
 Model.knex(knex);
 
 class Server extends Model {
 	static tableName = "servers";
 
 	static relationMappings = {
-		movies: {
+		titles: {
 			relation: Model.ManyToManyRelation,
 			modelClass: Title,
 			join: {
@@ -18,6 +19,16 @@ class Server extends Model {
 					to: "server_titles.titleId",
 				},
 				to: "title.id",
+			},
+		},
+	};
+	static relationMappings = {
+		alerts: {
+			relation: Model.HasManyRelation,
+			modelClass: Alert,
+			join: {
+				from: "server.id",
+				to: "alerts.id_server",
 			},
 		},
 	};
